@@ -1,0 +1,1 @@
+# GDE_AlkFejlTech_vizsga
