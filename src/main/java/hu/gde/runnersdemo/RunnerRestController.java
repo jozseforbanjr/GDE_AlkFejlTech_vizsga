@@ -15,6 +15,7 @@ public class RunnerRestController {
     @Autowired
     private LapTimeRepository lapTimeRepository;
     private RunnerRepository runnerRepository;
+    private SponsorRepository sponsorRepository; //f#9
 
     @Autowired
     public RunnerRestController(RunnerRepository runnerRepository, LapTimeRepository lapTimeRepository) {
@@ -99,4 +100,31 @@ public class RunnerRestController {
             this.lapTimeSeconds = lapTimeSeconds;
         }
     }
+
+    // F10.: REST vegpont: cipo tipus modositashoz
+    @PostMapping("/{id}/setsSponsor")
+    public ResponseEntity setSponsor(@PathVariable Long id, @RequestBody SponsorRequest sponsorRequest) {
+        // a kod nem tartalmazza a Runner.Id <-> Sponsor.Id kapcsolatot!
+        // Az adatbetoltes logikaja (Runner.Id = Sponsor.Id) alapjan azonban OK
+        RunnerEntity runner = runnerRepository.findById(id).orElse(null);
+        SponsorEntity sponsor = sponsorRepository.findById(sponsorRequest.getSponsorID()).orElse(null);
+        if (runner != null && sponsor != null) {
+            //nem kell uj elem, csak feluliras
+            runner.setSponsorEntity(sponsor);
+            runnerRepository.save(runner);
+            return ResponseEntity.ok().build();
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Runner with ID " + id + " not found");
+        }
+    }
+
+    public static class SponsorRequest {
+
+        private long sponsorID;
+        public long getSponsorID() { return sponsorID; }
+        public void setSponsorID(long sponsorID) { this.sponsorID = sponsorID; }
+
+
+    }
+
 }
