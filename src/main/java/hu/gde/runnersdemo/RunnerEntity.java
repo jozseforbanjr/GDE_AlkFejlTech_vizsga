@@ -11,10 +11,10 @@ public class RunnerEntity {
     private long runnerId;
     private String runnerName;
     private long averagePace;
+    private double runnerHeight; //feladat 1, +getter/setter
 
     @OneToMany(mappedBy = "runner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LapTimeEntity> laptimes = new ArrayList<>();
-
 
     public RunnerEntity() {
     }
@@ -46,4 +46,9 @@ public class RunnerEntity {
     public List<LapTimeEntity> getLaptimes() {
         return laptimes;
     }
+
+    //1. feladat
+    public double getRunnerHeight() { return runnerHeight; }
+
+    public void setRunnerHeight(double runnerHeight) { this.runnerHeight = runnerHeight; }
 }
