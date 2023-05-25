@@ -1,0 +1,75 @@
+Feladatok:
+
+Vegyetek fel egy magasság (height) adatot minden futóhoz. (2p)
+Ezt töltsétek ki inicializációkor a két futóra. (1p)
+Vegyetek fel egy harmadik futót tetszőleges adatokkal (1p)
+Csináljatok egy GET REST végpontot, ahol le lehet kérdezni a legmagasabb futo nevét. (5p)
+Bővítsétek a postman collectiont erre a fenti végpontra való kéréssel (3p)
+Írjátok ki a futók átlagmagasságát a http://localhost:8080/runners címen a futók listája alá (5p)
+Vezessetek be egy új szponzor entitást Sponsor néven (azonosító, név) egy futót egy szponzor szponzorálhat (oneToMany) (5p)
+Adjatok hozzá minden futóhoz inicializációkor egy szponzort (3p)
+A futó részletek http://localhost:8080/runner/{id} képernyőjén mutassuk meg a szponzort (3p)
+Írjatok egy REST végpontot, ahol id alapján lehet változtatni a futó szponzorát (6p)
+Bövítsétek a postman collectiont ezzel a kéréssel (1p)
+
+Megoldások
+https://github.com/jozseforbanjr/GDE_AlkFejlTech_vizsga
+
+___________________________________________________
+| Feladat 1:  |
+---------------------------------------------------
+Magasság adatok (méterben -> double)
+RunnerEntity módosítása
+
+____________________________________
+| Feladat 2:  |
+------------------------------------
+DataLoader kiegészítése a runnerHeight változóval,
+adatokkal való feltöltés
+
+_________________________________________________________
+| Feladat 3: |
+---------------------------------------------------------
+3. futó adatainak betöltése a DataLoaderbe (runnerHeight adattal együtt)
+
+_______________________________________________________
+| Feladat 4:
+-------------------------------------------------------
+RunnerRestController módosítása
+GET metódus deklarálás
+
+_____________________________________________________
+| Feladat 5:  |
+------------------------------------------------------
+POSTMAN collection új GET metódus létehozása
+
+_______________________________________________________
+| Feladat 6:  |
+-------------------------------------------------------
+
+_______________________________________________________
+| Feladat 7:  |
+-------------------------------------------------------
+SponsorEntity (class) és SponsorRepository(interface) létrehozása,
+RunnerEntity módosítása
+
+ezen a ponton valmilyen program hiba miatt az nem futo le, így tezstelni az alábbiakat nem tudtam,
+csak a megoldott  RunnersDemo feladat alapján haladtam tovább
+https://github.com/jozseforbanjr/AlkFejlTech
+_______________________________________________________
+| Feladat 8:  |
+-------------------------------------------------------
+
+_______________________________________________________
+| Feladat 9:  |
+-------------------------------------------------------
+RunnerRestController módosítása
+POST metódus deklarálás, runner/{id} paraméterrel
+
+_______________________________________________________
+| Feladat 10:  |
+-------------------------------------------------------
+POSTMAN collection új POST metódus,
+body: raw/JSON
+A korábbi hibva miatt nem tudtam tesztelni, de itt van a korábbi runnersdemo-s megoldásom:
+https://github.com/jozseforbanjr/AlkFejlTech
