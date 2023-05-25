@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Arrays;
 import java.util.List;
 
 @RestController
@@ -45,6 +46,32 @@ public class RunnerRestController {
     @GetMapping("")
     public List<RunnerEntity> getAllRunners() {
         return runnerRepository.findAll();
+    }
+
+    @GetMapping("/highest")
+    public String getHighest() {
+        List<RunnerEntity> runners = runnerRepository.findAll();
+        RunnerEntity higherRunner;
+        //model.addAttribute("runners", runners);//
+        String highestName = "Highest not found";
+
+        //Arrays.stream(runners.runnerHeight.toArray()).max();
+        double current_highest_value = 0;
+        long counter = 0;
+        for (RunnerEntity runner : runners) {
+            if (runner != null) {
+                if (current_highest_value < runner.getRunnerHeight()) {
+                    current_highest_value = runner.getRunnerHeight(); //feluliras
+                    highestName = runner.getRunnerName();
+                }
+            }
+            counter += 1;
+        }
+        highestName = "Highest runner: " + highestName;
+        return highestName;
+        /*} else {
+            return "Error: highest could not be determined";
+        }*/
     }
 
     @PostMapping("/{id}/addlaptime")
