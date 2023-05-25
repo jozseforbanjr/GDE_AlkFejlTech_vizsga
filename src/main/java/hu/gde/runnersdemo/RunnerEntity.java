@@ -13,6 +13,16 @@ public class RunnerEntity {
     private long averagePace;
     private double runnerHeight; //feladat 1, +getter/setter
 
+    @ManyToOne
+    private SponsorEntity sponsorEntity; //f#7
+    public SponsorEntity getSponsorEntity() {
+        return sponsorEntity;
+    }
+
+    public void setSponsorEntity(SponsorEntity sponsorEntity) {
+        this.sponsorEntity = sponsorEntity;
+    }
+
     @OneToMany(mappedBy = "runner", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<LapTimeEntity> laptimes = new ArrayList<>();
 
