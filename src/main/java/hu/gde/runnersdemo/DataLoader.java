@@ -8,14 +8,21 @@ import org.springframework.stereotype.Component;
 public class DataLoader implements CommandLineRunner {
 
     private final RunnerRepository runnerRepository;
+    private final SponsorRepository sponsorRepository; //f#8 (+constructor modositas)
 
     @Autowired
-    public DataLoader(RunnerRepository runnerRepository) {
+    public DataLoader(RunnerRepository runnerRepository, SponsorRepository sponsorRepository) {
         this.runnerRepository = runnerRepository;
+        this.sponsorRepository = sponsorRepository;
     }
 
     @Override
     public void run(String... args) {
+
+        SponsorEntity sponsor1 = new SponsorEntity(); //f#8
+        sponsor1.setSponsorName("Adidas");
+        sponsorRepository.save(sponsor1);
+
         RunnerEntity runnerEntity = new RunnerEntity();
         runnerEntity.setRunnerName("Tomi");
         runnerEntity.setAveragePace(310);
@@ -36,6 +43,10 @@ public class DataLoader implements CommandLineRunner {
 
         runnerRepository.save(runnerEntity);
 
+        SponsorEntity sponsor2 = new SponsorEntity(); //f#8
+        sponsor2.setSponsorName("Nike");
+        sponsorRepository.save(sponsor2);
+
         RunnerEntity runnerEntity2 = new RunnerEntity();
         runnerEntity2.setRunnerName("Zsuzsi");
         runnerEntity2.setAveragePace(290);
@@ -55,6 +66,10 @@ public class DataLoader implements CommandLineRunner {
         runnerEntity2.getLaptimes().add(laptime4);
 
         runnerRepository.save(runnerEntity2);
+
+        SponsorEntity sponsor3 = new SponsorEntity(); //f#8
+        sponsor3.setSponsorName("Tisza cipő");
+        sponsorRepository.save(sponsor3);
 
         //f#3
         RunnerEntity runnerEntity3 = new RunnerEntity();
