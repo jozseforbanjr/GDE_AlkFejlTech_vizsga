@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,16 @@ public class RunnerController {
     public String getAllRunners(Model model) {
         List<RunnerEntity> runners = runnerRepository.findAll();
         model.addAttribute("runners", runners);
+        //f#6
+        int count = 0;
+        double sumHeight = 0;
+        for (int i = 0; i < runners.size(); i++) {
+            sumHeight += runners.get(i).getRunnerHeight();
+            count += 1;
+        }
+        String averageHeight = new DecimalFormat("#.0#").format(sumHeight / count );
+        model.addAttribute("averageHeight", averageHeight);
+
         return "runners";
     }
 
