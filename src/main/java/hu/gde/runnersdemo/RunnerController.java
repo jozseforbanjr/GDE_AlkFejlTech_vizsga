@@ -18,6 +18,7 @@ public class RunnerController {
     private RunnerRepository runnerRepository;
     @Autowired
     private LapTimeRepository lapTimeRepository;
+    private SponsorRepository sponsorRepository; //f#7
     @GetMapping("/runners")
     public String getAllRunners(Model model) {
         List<RunnerEntity> runners = runnerRepository.findAll();
@@ -39,10 +40,15 @@ public class RunnerController {
     public String getRunnerById(@PathVariable Long id, Model model) {
         RunnerEntity runner = runnerRepository.findById(id).orElse(null);
         RunnerService runnerService = new RunnerService(runnerRepository);
+        SponsorEntity sponsor = sponsorRepository.findById(id).orElse(null);
         if (runner != null) {
             model.addAttribute("runner", runner);
             double averageLaptime = runnerService.getAverageLaptime(runner.getRunnerId());
             model.addAttribute("averageLaptime", averageLaptime);
+
+            String sponsorName = sponsor.getSponsorName();
+            model.addAttribute("sponsorName", sponsorName);
+
             return "runner";
         } else {
             return "error";
