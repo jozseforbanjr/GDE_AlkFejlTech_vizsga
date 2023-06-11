@@ -18,6 +18,7 @@ public class RunnerController {
     private RunnerRepository runnerRepository;
     @Autowired
     private LapTimeRepository lapTimeRepository;
+    @Autowired
     private SponsorRepository sponsorRepository; //f#7
     @GetMapping("/runners")
     public String getAllRunners(Model model) {
@@ -41,7 +42,7 @@ public class RunnerController {
         RunnerEntity runner = runnerRepository.findById(id).orElse(null);
         RunnerService runnerService = new RunnerService(runnerRepository);
         SponsorEntity sponsor = sponsorRepository.findById(id).orElse(null);
-        if (runner != null) {
+        if (runner != null && sponsor != null) {
             model.addAttribute("runner", runner);
             double averageLaptime = runnerService.getAverageLaptime(runner.getRunnerId());
             model.addAttribute("averageLaptime", averageLaptime);
@@ -80,6 +81,15 @@ public class RunnerController {
             return "error";
         }
         return "redirect:/runner/" + id;
+    }
+    // vizsga utan
+    public static class SponsorRequest {
+
+        private long sponsorID;
+        public long getSponsorID() { return sponsorID; }
+        public void setSponsorID(long sponsorID) { this.sponsorID = sponsorID; }
+
+
     }
 
 }

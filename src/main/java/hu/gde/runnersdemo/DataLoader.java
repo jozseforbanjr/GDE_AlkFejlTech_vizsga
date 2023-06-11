@@ -40,6 +40,8 @@ public class DataLoader implements CommandLineRunner {
 
         runnerEntity.getLaptimes().add(laptime1);
         runnerEntity.getLaptimes().add(laptime2);
+        //korrekcio vizsga utan
+        runnerEntity.setSponsor(sponsor1);
 
         runnerRepository.save(runnerEntity);
 
@@ -64,6 +66,8 @@ public class DataLoader implements CommandLineRunner {
 
         runnerEntity2.getLaptimes().add(laptime3);
         runnerEntity2.getLaptimes().add(laptime4);
+        //korrekcio vizsga utan
+        runnerEntity2.setSponsor(sponsor2);
 
         runnerRepository.save(runnerEntity2);
 
@@ -89,6 +93,8 @@ public class DataLoader implements CommandLineRunner {
 
         runnerEntity3.getLaptimes().add(laptime5);
         runnerEntity3.getLaptimes().add(laptime6);
+        //korrekcio vizsga utan
+        runnerEntity3.setSponsor(sponsor3);
 
         runnerRepository.save(runnerEntity3);
 

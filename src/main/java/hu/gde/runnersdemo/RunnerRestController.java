@@ -18,9 +18,11 @@ public class RunnerRestController {
     private SponsorRepository sponsorRepository; //f#9
 
     @Autowired
-    public RunnerRestController(RunnerRepository runnerRepository, LapTimeRepository lapTimeRepository) {
+    public RunnerRestController(RunnerRepository runnerRepository, LapTimeRepository lapTimeRepository,
+                                SponsorRepository sponsorRepository) {
         this.runnerRepository = runnerRepository;
         this.lapTimeRepository = lapTimeRepository;
+        this.sponsorRepository = sponsorRepository;
     }
 
     @GetMapping("/{id}")
@@ -110,7 +112,7 @@ public class RunnerRestController {
         SponsorEntity sponsor = sponsorRepository.findById(sponsorRequest.getSponsorID()).orElse(null);
         if (runner != null && sponsor != null) {
             //nem kell uj elem, csak feluliras
-            runner.setSponsorEntity(sponsor);
+            runner.setSponsor(sponsor);
             runnerRepository.save(runner);
             return ResponseEntity.ok().build();
         } else {

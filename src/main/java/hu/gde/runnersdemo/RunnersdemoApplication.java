@@ -11,3 +11,6 @@ public class RunnersdemoApplication {
 	}
 
 }
+
+//'hu.gde.runnersdemo.RunnerEntity.sponsor' targets
+// an unknown entity named 'hu.gde.runnersdemo.SponsorEntity'

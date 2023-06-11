@@ -2,23 +2,15 @@ package hu.gde.runnersdemo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+
 import java.util.ArrayList;
 import java.util.List;
-
-/*import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;*/
-
-/*import java.util.ArrayList;
-import java.util.List;*/
-
+@Entity
 public class SponsorEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long sponsorID;
+    private long sponsorID;
     private String sponsorName;
 
     @JsonIgnore
@@ -29,7 +21,7 @@ public class SponsorEntity {
         return sponsorID;
     }
 
-    public void setSponsorID(Long sponsorID) {
+    public void setSponsorID(long sponsorID) {
         this.sponsorID = sponsorID;
     }
 
@@ -47,6 +39,5 @@ public class SponsorEntity {
 
     //ures contructor
     public SponsorEntity() {
-
     }
 }
